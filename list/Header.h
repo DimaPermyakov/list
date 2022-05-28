@@ -8,6 +8,8 @@ public:
 	~list();
 	T& operator[](const size_t& index);
 	T operator[](const size_t& index) const;
+	template <class T1>
+	friend std::ostream& operator<<(std::ostream& fin, const list<T1>& inf);
 	void push_back(const T& data);
 	void push_front(const T& data);
 	void pop_back();
@@ -40,6 +42,12 @@ template<class T>
 list<T>::~list() {
 	clear();
 }
+template<class T1>
+std::ostream& operator<<(std::ostream& fin, const list<T1>& inf) {
+	for (size_t i = 0; i < inf.size(); ++i)
+		fin << inf[i] << ' ';
+	return fin;
+}
 template<class T>
 T& list<T>::operator[](const size_t& index) {
 	size_t counter = 0;
@@ -60,7 +68,7 @@ T list<T>::operator[](const size_t& index) const {
 	Node<T>* temp = _head;
 	while (temp != nullptr) {
 		if (counter == index) {
-			return _head->_data;
+			return temp->_data;
 		}
 		else {
 			temp = temp->_pNext;
