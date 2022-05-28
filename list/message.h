@@ -7,8 +7,8 @@ public:
 	message() = default;
 	message(const std::string&, const std::string&);
 	~message() = default;
-	std::string GetText();
-	std::string GetNumber();
+	std::string GetText() const;
+	std::string GetNumber() const;
 	void SetText(const std::string&);
 	void SetNumber(const std::string&);
 private:
@@ -17,10 +17,10 @@ private:
 };
 inline message::message(const std::string& tepehone_number, const std::string& text_message)
 	: _text(text_message), _number(tepehone_number) {}
-inline std::string message::GetText() {
+inline std::string message::GetText() const {
 	return _text;
 }
-inline std::string message::GetNumber() {
+inline std::string message::GetNumber() const {
 	return _number;
 }
 inline void message::SetText(const std::string& text_message) {
